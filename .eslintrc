@@ -1,0 +1,13 @@
+{
+  "parser": "@typescript-eslint/parser",
+  "plugins": ["@typescript-eslint"],
+  "rules": {
+    // "@typescript-eslint/rule-name": "error",
+    "quotes": [2, "single", { "avoidEscape": true }]
+  },
+  "extends": [
+    "eslint:recommended",
+    "@react-native-community",
+    "plugin:@typescript-eslint/recommended"
+  ]
+}
