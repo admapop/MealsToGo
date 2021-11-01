@@ -1,7 +1,8 @@
 import React from 'react';
 import styled from 'styled-components/native';
-import { Card, Title } from 'react-native-paper';
+import { Card } from 'react-native-paper';
 import { SvgXml } from 'react-native-svg';
+import { Text } from './Text';
 import starSvg from '../../assets/star';
 import openSvg from '../../assets/open';
 
@@ -18,12 +19,6 @@ const Info = styled.View`
   padding: ${({ theme }) => theme.space[3]};
 `;
 
-const CardTitle = styled(Title)`
-  font-family: ${({ theme }) => theme.fonts.heading};
-  font-size: ${({ theme }) => theme.fontSizes.title};
-  color: ${({ theme }) => theme.colors.ui.primary};
-`;
-
 const Row = styled.View`
   flex-direction: row;
   justify-content: space-between;
@@ -33,10 +28,6 @@ const RowEnd = styled.View`
   margin-left: auto;
   flex-direction: row;
   align-items: center;
-`;
-
-const ClosedLabel = styled.Text`
-  color: ${({ theme }) => theme.colors.text.error};
 `;
 
 const StyledOpen = styled(SvgXml)`
@@ -81,14 +72,14 @@ export const RestaurantInfo = ({
     <RestaurantCard elevation={5}>
       <CardCover key={name} source={{ uri: photos[0] }} />
       <Info>
-        <CardTitle>{name}</CardTitle>
+        <Text variant="label">{name}</Text>
         <Row>
           {ratingArray.map((_, i) => (
             <SvgXml key={i} xml={starSvg} width={20} height={20} />
           ))}
           <RowEnd>
             {isClosedTemporarily && (
-              <ClosedLabel>CLOSED TEMPORARILY</ClosedLabel>
+              <Text variant="error">CLOSED TEMPORARILY</Text>
             )}
             {isOpenNow && <StyledOpen xml={openSvg} width={20} height={20} />}
             <StyledImage source={{ uri: icon }} />
