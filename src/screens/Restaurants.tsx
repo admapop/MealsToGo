@@ -14,10 +14,13 @@ const SearchSection = styled.View`
   padding: ${({ theme }) => theme.space[3]};
 `;
 
-const RestaurantList = styled.View`
-  flex: 1;
+const RestaurantList = styled.FlatList`
   background-color: ${({ theme }) => theme.colors.bg.primary};
   padding: ${({ theme }) => theme.space[3]};
+`;
+
+const RestaurantCardWrapper = styled.View`
+  margin-bottom: ${({ theme }) => theme.space[3]};
 `;
 
 export const Restaurants = () => {
@@ -32,9 +35,15 @@ export const Restaurants = () => {
           onChangeText={setSearchQuery}
         />
       </SearchSection>
-      <RestaurantList>
-        <RestaurantInfo />
-      </RestaurantList>
+      <RestaurantList
+        data={[{ name: 1 }, { name: 2 }, { name: 3 }]}
+        renderItem={() => (
+          <RestaurantCardWrapper>
+            <RestaurantInfo />
+          </RestaurantCardWrapper>
+        )}
+        keyExtractor={(item) => item.name}
+      />
     </SafeAreaView>
   );
 };
